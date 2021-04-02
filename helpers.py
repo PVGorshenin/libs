@@ -1,22 +1,4 @@
-import gc
 from datetime import timedelta
-from functools import wraps
-
-
-def memory_intensive(func):
-    """
-    Decorator for memory intensive functions. Calls gc.collect() before and after the function.
-    """
-
-    @wraps(func)
-    def wrapper(*args, **kwargs):
-        gc.collect()
-        try:
-            return func(*args, **kwargs)
-        finally:
-            gc.collect()
-
-    return wrapper
 
 
 def shift_date(date, days_to_shift):
